@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "nome": "Console Xbox Series X 1TB",
+    "categoria": "consoles",
+    "preco": 4499.00,
+    "imagem": "https://images.pexels.com/photos/10997627/pexels-photo-10997627.jpeg",
+    "descricao": "O Xbox mais rápido e poderoso de todos os tempos, com SSD de 1TB e jogos em 4K nativo."
+  },
+  {
+    "id": 2,
+    "nome": "Console Xbox Series S 512GB",
+    "categoria": "consoles",
+    "preco": 2699.00,
+    "imagem": "https://images.unsplash.com/photo-1621259182978-fbf93132d53d?w=800&auto=format&fit=crop",
+    "descricao": "Desempenho de próxima geração no menor Xbox de todos os tempos. Totalmente digital."
+  },
+  {
+    "id": 3,
+    "nome": "Console PlayStation 5 DualSense Kit",
+    "categoria": "consoles",
+    "preco": 3799.00,
+    "imagem": "https://images.pexels.com/photos/32967534/pexels-photo-32967534.jpeg",
+    "descricao": "Experiência de jogo imersiva com feedback háptico e gatilhos adaptáveis."
+  },
+ {
+    "id": 4,
+    "nome": "PlayStation 3 Super Slim",
+    "categoria": "consoles",
+    "preco": 899.00,
+    "imagem": "https://upload.wikimedia.org/wikipedia/commons/2/23/Sony-PlayStation-PS3-SuperSlim-Console-FL.png",
+    "descricao": "Modelo clássico PlayStation 3 Super Slim com design compacto e alta performance."
+},
+  {
+    "id": 5,
+    "nome": "Console PS4 Dourado Slim",
+    "categoria": "consoles",
+    "preco": 2199.00,
+    "imagem": "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=800&auto=format&fit=crop",
+    "descricao": "Edição especial do PlayStation 4 com excelente catálogo de jogos."
+  },
+  {
+    "id": 6,
+    "nome": "Samsung Galaxy A15 5G",
+    "categoria": "celulares",
+    "preco": 1299.00,
+    "imagem": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Samsung_Galaxy_A15_5G_2024_%281%29_%28cropped%29.jpg",
+    "descricao": "Smartphone Samsung Galaxy A15 5G com tela Super AMOLED e excelente autonomia de bateria."
+  },
+  {
+    "id": 7,
+    "nome": "Xiaomi Redmi Note 13",
+    "categoria": "celulares",
+    "preco": 1499.00,
+    "imagem": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=800&auto=format&fit=crop",
+    "descricao": "Smartphone Xiaomi com câmera de alta resolução e carregamento rápido."
+  },
+  {
+    "id": 8,
+    "nome": "Samsung Galaxy A55 5G",
+    "categoria": "celulares",
+    "preco": 2199.00,
+    "imagem": "https://upload.wikimedia.org/wikipedia/commons/b/b2/Samsung_Galaxy_A55_5G_2024_%28cropped%29.jpg",
+    "descricao": "Design elegante em metal e vidro, resistência à água IP67 e câmeras avançadas para noite."
+  },
+  {
+    "id": 9,
+    "nome": "Realme 12 Pro Plus 5G",
+    "categoria": "celulares",
+    "preco": 2999.00,
+    "imagem": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&auto=format&fit=crop",
+    "descricao": "Câmera periscópica de nível profissional, tela curva de 120Hz e acabamento premium."
+  },
+  {
+    "id": 10,
+    "nome": "Notebook Gamer Lenovo Legion 5",
+    "categoria": "notebooks",
+    "preco": 5999.00,
+    "imagem": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=800&auto=format&fit=crop",
+    "descricao": "Notebook gamer de alto desempenho com placa de vídeo RTX dedicada."
+  }
+]

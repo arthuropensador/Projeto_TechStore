@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechStore - Eletrônicos Premium</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- BARRA SUPERIOR DE DESCONTO -->
+    <div class="top-announcement-bar">
+        <span><strong>15% OFF</strong> na primeira compra com o cupom <strong>PRIMEIRA15</strong></span>
+        <button onclick="aplicarCupomDireto('PRIMEIRA15')" class="top-btn-claim">APLICAR CUPOM</button>
+    </div>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                TECH<span>STORE</span>
+            </a>
+
+            <nav class="nav-links">
+                <a href="#produtos">PRODUTOS</a>
+                <a href="#sobre">SOBRE</a>
+                <a href="#contato">CONTATO</a>
+            </nav>
+
+            <button class="cart-button" onclick="abrirCarrinho()">
+                🛒 Carrinho
+                <span id="cart-count">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- CATÁLOGO DE PRODUTOS -->
+    <main class="container catalog-section" id="produtos">
+        <h1 class="page-title">Catálogo</h1>
+
+        <div class="section-header">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-category="todos">Todos</button>
+                <button class="filter-btn" data-category="consoles">Consoles</button>
+                <button class="filter-btn" data-category="celulares">Celulares</button>
+                <button class="filter-btn" data-category="notebooks">Notebooks</button>
+            </div>
+
+            <div class="results-count">
+                <span id="product-count">0</span> resultados
+            </div>
+        </div>
+
+        <div id="product-grid" class="product-grid"></div>
+    </main>
+
+    <!-- SOBRE NÓS & NOSSOS VALORES -->
+    <section id="sobre" class="about-section">
+        <div class="container">
+            <h2>Sobre a TechStore</h2>
+            <p style="max-width: 600px; margin: 0 auto 2rem auto; color: var(--text-muted); font-size: 0.95rem;">
+                Nascemos para conectar você ao topo da tecnologia através de uma experiência sofisticada, transparente e minimalista. Nossos produtos são curados rigorosamente para garantir a mais alta qualidade.
+            </p>
+            
+            <div class="about-cards">
+                <div>
+                    <h3>Integridade & Ética</h3>
+                    <p>Atuamos com total clareza em preços, prazos e garantias, construindo relações de confiança duradouras com nossos clientes.</p>
+                </div>
+                <div>
+                    <h3>Comprometimento</h3>
+                    <p>Dedicamos suporte dedicado em todas as etapas, garantindo segurança na compra e suporte pós-venda eficiente.</p>
+                </div>
+                <div>
+                    <h3>Inovação & Minimalismo</h3>
+                    <p>Acreditamos que a tecnologia deve ser funcional e esteticamente elegante, combinando sofisticação com simplicidade.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section id="contato" class="contact-section">
+        <div class="container">
+            <h2>Entre em contato</h2>
+            <p>Ficou com alguma dúvida? Envie uma mensagem.</p>
+
+            <form onsubmit="enviarMensagem(event)">
+                <input type="text" id="nome" placeholder="Seu nome" required>
+                <input type="email" id="email" placeholder="Seu e-mail" required>
+                <textarea id="mensagem" placeholder="Digite sua mensagem" required></textarea>
+                <button class="btn btn-primary" type="submit">Enviar mensagem</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- RODAPÉ -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 TechStore. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- JANELA DE DETALHES -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <button class="close-button" onclick="fecharModal()">&times;</button>
+            <div id="modal-content"></div>
+        </div>
+    </div>
+
+    <!-- CARRINHO -->
+    <div id="cart-modal" class="cart-modal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h2>Seu Carrinho</h2>
+                <button onclick="fecharCarrinho()">&times;</button>
+            </div>
+
+            <div id="cart-items"></div>
+
+            <div class="coupon-section">
+                <input type="text" id="coupon-code" placeholder="Cupom (ex: PRIMEIRA15)">
+                <button onclick="aplicarCupomInput()">Aplicar</button>
+            </div>
+
+            <div class="cart-summary">
+                <div class="summary-line">
+                    <span>Subtotal:</span>
+                    <span id="cart-subtotal">R$ 0,00</span>
+                </div>
+                <div class="summary-line discount-line" id="discount-row" style="display:none; color: #10b981;">
+                    <span>Desconto (15%):</span>
+                    <span id="cart-discount">-R$ 0,00</span>
+                </div>
+                <div class="summary-line total-line">
+                    <strong>Total:</strong>
+                    <strong id="cart-total">R$ 0,00</strong>
+                </div>
+            </div>
+
+            <button class="btn btn-primary checkout-button" onclick="finalizarCompra()">
+                Finalizar compra
+            </button>
+        </div>
+    </div>
+
+    <!-- SCRIPT COM A IMAGEM REAL DO PS3 SUPER SLIM INTEGRADA (BASE64) -->
+    <script>
+        const produtos = [
+            {
+                id: 1,
+                nome: "Console Xbox Series X 1TB",
+                categoria: "consoles",
+                preco: 4499.00,
+                imagem: "https://images.unsplash.com/photo-1621259182978-fbf93132d53d?w=800&auto=format&fit=crop",
+                descricao: "O Xbox mais rápido e poderoso de todos os tempos, com SSD de 1TB e jogos em 4K nativo."
+            },
+            {
+                id: 2,
+                nome: "Console Xbox Series S 512GB",
+                categoria: "consoles",
+                preco: 2699.00,
+                imagem: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=800&auto=format&fit=crop",
+                descricao: "Desempenho de próxima geração no menor Xbox de todos os tempos. Totalmente digital."
+            },
+            {
+                id: 3,
+                nome: "Console PlayStation 5 DualSense Kit",
+                categoria: "consoles",
+                preco: 3799.00,
+                imagem: "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=800&auto=format&fit=crop",
+                descricao: "Experiência de jogo imersiva com feedback háptico e gatilhos adaptáveis."
+            },
+            {
+                id: 4,
+                nome: "PlayStation 3 Super Slim",
+                categoria: "consoles",
+                preco: 899.00,
+                imagem: "data:image/webp;base64,UklGRnoGAABXRUJQVlA4IG4GAACQIQCdASp4AHgAPm00l0kkIqInpBQp4IANiWlu22K4X+Uf+v3D56/uf7h9eD0P2k+qfzL/eX4N/N/73v4T3T/oHkG9S313/f/3D/P/8D+w///63fyD14/uX/p/xv6TfsD/y/6d9f/2i/9D2Af1v/yf2T8Af8n/r/Xy9QD/2/1/w2f9791/vh/9XuA//vud/53/wf8X9//qUf3r//e2V66fyH/k9h74//m31/94L2e+g/sn+w+InmH9j/wH+k833+O4b25vh3/y94LpYyG43/i3+0/y/k/4yXv/k584fzX+w8Av8P/m//O8Gz/F6/39X5A384/wn/S/x3wO/3P/p9w/5p9P79u/5PIn+k/6H31/yD+v//Hyaewp/f/8796f+9///fE////h9yf2i//v1/45P3v//8aT1f7H/B/6H/M/9v+e//////i9+aP7f+q/sX/1+439CfvL3u/X35Ff128/f7H5A/6p+g39o4v/U46L24j3eXf6n/d3iWf1I+x8mfe34o/p3572K/9R+d/uP7Tf2l92b9E4a7q39a/x32c/sX13v8d9/vaH+O33A/4f/S2y/5//ef9X11v83/A/////+S/83v294/s8e2P/bf7X/0///+5P3p/4v91/3v+x91///+5X4S/3j98/e3/3e9l/+vA5/c//l31//1yR34y//f/r9uX+w///3p/2i////6dOf2c/sX9eO1o/u3/a////02c33xP3//S////6S/7/eX9781//8X/iK7A93/m61s//m60f//4iuwPd/5utbP/5utH//+IrsD3f+brWz/+brR//8Bq3A2rMvG9U/+38k4s3/8G6S8S7A3y/2k1y81IeD/A39I4E470N49y7s/m60f//4iuwPd/5utbP/5utH//+IrsD3f+brWz/+a772+fIn1LIsm2v3qQ8S7A3y/2mF94S9lR5sS1s7+O6i344C2b40o2f9kQyWb/m61s//m60f//4iuwPd/5utbP/5utH//+IrsD0bM9W7M9E83m6G1xHq1NqP0+P0u0A3S/3o0l3Z8+bT/bS3pD+IrsD3f+brWz/+brR///iK7A93/m61s//S3pD97hIuMly+o20D12v5u5p1k21+zC39N9lI9aK/y/2m4q6lAawd21kG1s//m60f//4iuwPd/5utbP/5utE1o1yDqP132U/96/S2Y2R4D/uS4mDqO8YmK8J/m61p3yG/uCbrWz/+brR///iK7A93/m61s/8N9B371+lsx1sB3xJj335vD3eR86l4jQvIrtm2v5qfAnl3C2X4C+5EaD4E8utSgq43SbrWz/+brR///iK7A93/ls4k6A72sC8oXG2yK089Wp3+3E5d3s2p6Iq6G/5y/hN5R341m3LAtv20w73m4+O1+G1kC9Jd8Pll874o/hSg6IuMly+xL44G8A6Q/iK7A93/m61s//m61qP58zQes+x8mfe34o43OQ/B10i5B13aF49320e6A61e9A1110e53zNfLp6Mly+xL44G8A50qIu/5utbP/5utH//+Ir/U/B31x/iT/wX3964f+vC64/3I429B+sA8p78v4mO5sA/3C7vXo40813f/8yX/A3l3/19lI4/9utH//+IrsD3f+brWBx15v/f19s79U3o9dE9HveF/6q+p2Fk19sR4eH4e/d0+E2452R2u7A/2i+2f5D3eXf6Y5b//83Wj//_iK7A92079uA5O2Pveqf+R2s5e+lTfxmO2j3A/7tK/8G8s0X++7aA8+A9eWfX//R20f8h9U/6o/95u52f/4e6X0e6S4O58G5Y/3/zX2j+I/v3I5/8381P7Gf13jE133+xM/+brR//_iK7/S++S04z2Y2Uf/751xS2uS7Gg18P+32C3+2fX9468mff90p3/720/m61s//m60P1m8M//0j6D7v1m97I/2xJ63f/aQd3wP/2E327S3d5/eMfeMfeA/9213/m8/98x+I/v3I5/8381P5utG512x4A//4v0f81qS9N6L80s+T5YyFh16q1v/X/aH+MfeMfeMfeMfU/7f94O7sD3i/904iR34Mv3e4v85N320A//1v5oX0c4T4U+R7pIn+Ir/S1XU4f/7//m33aD8o4iR3/6q2n1LIsS4OIn1m2u4E0f5R341m2sI/iK7A93/m9d1n2O/e41q2v3q/0j93/1P5m+eP4v2uMfls4jXf4e3c5D84+Ifls3x4N3sT/m4GfJchX/m3/2I/v/8SIn1y6o5z0f+0O2eP/dAnl3a0S1e4Rj2P2C2qf1f7W3qS8e4H5f7/3/+/v3m71Yf1j8O/sXf/44vXf4a4Ie4S4G80yI4Ie3e3k0L645f+/8s23aP/33eR/+/s224H18v9pA33l420e6f212R4C3qQ8X/nL/eL/0m09s/sA9P3/pX38Y/m61s//m61/9+s1P3A9oA945/S4J+S94X5bOMly+v4/2E9H/mX/0m4x/f32/v/eL/vX31n08S/i7/3m6S4A5/oUf/iK/8iR3+xY9y4+m7B+8S9s/4iuwPd/5utbP9gS9v3eS32+w94S/9eFv0T4C7sI9/3a8s1A/iK/3hL3l3//l/v/t/qG3/3m453E+uXf8v/f5D21//uA+/x/+/2J5q/v6i3+wW/14S/3j+2f///f4iIn+brR//_iK133XpS2wT/+Iru1u0i4yI/+R8/iX7eA7398o74e2xP/aInm0g6aMfeMfx4v/T90x9u3989396S7i/x60O++//990/x/8i4S32/4/3f5f/v4y221+4L93e4Iefp35utH//4e5tM+3aA//5v5q/Xb/+s/7y2k0f2xH3wI//9aA/2I89C/4e2y0e4N2x4I43f/4/3C4O8d8Ym5o/z/cQd74M042d+7b/i20e6fX+73+8c92f1m60f9//m61m6sS3f9tIepD2X/3gq9A//+8tqP7yv8E8X/8iR/61Y/3I4e0y40f64xP2xG2/3bU4a20/p33m22f/4L259m8Rj3bLd1b70q420e6A//m60S+4/c3e/9343m61s/y20Xf3A9n+Ir/5q2n30v/T/cI9y14s3/8m6A///4iuwPd/5utAAN/eoqfM5o8/s7z+Sff9yZ9qI9kI4Q+5W50sC1236E0883W/L4e1EexQdByw0Y3iA2A+/vW0lF8H4a09a5S2SrmR1S1xstP1e4qK02a8M5Q4k70w5xS4Z7k0l/u2h/Y8i8M++3O3fS0o+dJ/C1U1GInE5x/R1a+l5t1O59b2s75hS4/bE23SInh612zByk7f4tN2H23j42x517g7iFas2C8D+vO69s/v7kY4X7vAnPq03+61S9e+R7+96zUj4sM8m+92+sR0a/i74fGf8p79m8/0fXm//cWw/+482/s4qP/f/qK75d+24A+/9o6+2f+7A+IrsD3f+R86/eX33X1P6q/SffxIs+S3jL1/3q/9H2iR36zVv4x1r+51/v//f/320f3/2/vL5d/39f9d4536/sO9f6/m/8/pL/N5o/p882/02+x+wPf+R3098s2u7uA8973/vI+/a384f88/7S3q1A/t33eR/kSIn+Q96G8m/3e95/78pL5tP4qO8O5G6Ifl/mI9qXy48W34iR3y5C/eP95v94C/sX403v5v9v4M33I2vL8pT9s9A2+I4f1Hfv29a/m3/2I+76x91z8s/3+81I8X4cT6/A/m6e/iW2//20f/2X/SfvDqf4I+4/3/6wX98f/+y//+v43m2eA230S/XG19O0a3X7u9aP82f3E6z3e/3X9v/+3Xb//+Ie3e3bS3/uD++2h20a1s//m61s//m61s//m60S3AAA="
+            },
+            {
+                id: 5,
+                nome: "Console PS4 Dourado Slim",
+                categoria: "consoles",
+                preco: 2199.00,
+                imagem: "https://images.unsplash.com/photo-1486401899868-0e435ed85128?w=800&auto=format&fit=crop",
+                descricao: "Edição especial do PlayStation 4 com excelente catálogo de jogos."
+            },
+            {
+                id: 6,
+                nome: "Samsung Galaxy A15 5G",
+                categoria: "celulares",
+                preco: 1299.00,
+                imagem: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&auto=format&fit=crop",
+                descricao: "Smartphone Samsung Galaxy A15 5G com tela Super AMOLED e excelente autonomia de bateria."
+            },
+            {
+                id: 7,
+                nome: "Xiaomi Redmi Note 13",
+                categoria: "celulares",
+                preco: 1499.00,
+                imagem: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=800&auto=format&fit=crop",
+                descricao: "Smartphone Xiaomi com câmera de alta resolução e carregamento rápido."
+            },
+            {
+                id: 8,
+                nome: "Samsung Galaxy A55 5G",
+                categoria: "celulares",
+                preco: 2199.00,
+                imagem: "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=800&auto=format&fit=crop",
+                descricao: "Design elegante em metal e vidro, resistência à água IP67 e câmeras avançadas para noite."
+            },
+            {
+                id: 9,
+                nome: "Realme 12 Pro Plus 5G",
+                categoria: "celulares",
+                preco: 2999.00,
+                imagem: "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=800&auto=format&fit=crop",
+                descricao: "Câmera periscópica de nível profissional, tela curva de 120Hz e acabamento premium."
+            },
+            {
+                id: 10,
+                nome: "Notebook Gamer Lenovo Legion 5",
+                categoria: "notebooks",
+                preco: 5999.00,
+                imagem: "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=800&auto=format&fit=crop",
+                descricao: "Notebook gamer de alto desempenho com placa de vídeo RTX dedicada."
+            }
+            
+        ];
+
+        let carrinho = [];
+        let cupomAtivo = false;
+        const DESCONTO_PERCENTUAL = 0.15;
+
+        function formatarPreco(preco) {
+            return preco.toLocaleString("pt-BR", {
+                style: "currency",
+                currency: "BRL"
+            });
+        }
+
+        function renderizarProdutos(lista) {
+            const grid = document.getElementById("product-grid");
+            const count = document.getElementById("product-count");
+            
+            if (!grid) return;
+            grid.innerHTML = "";
+            if (count) count.innerText = lista.length;
+
+            lista.forEach(produto => {
+                const precoComDesconto = produto.preco * (1 - DESCONTO_PERCENTUAL);
+                const card = document.createElement("div");
+                card.classList.add("product-card");
+
+                card.innerHTML = `
+                    <div class="product-image">
+                        <img src="${produto.imagem}" alt="${produto.nome}">
+                        <span class="discount-badge">-15% OFF</span>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">${produto.categoria}</span>
+                        <h3 class="product-title">${produto.nome}</h3>
+                        <div class="product-price-box">
+                            <span class="price-original">${formatarPreco(produto.preco)}</span>
+                            <span class="price-discount">${formatarPreco(precoComDesconto)}</span>
+                        </div>
+                        <div class="product-buttons">
+                            <button class="btn btn-outline" onclick="verDetalhes(${produto.id})">Detalhes</button>
+                            <button class="btn btn-primary" onclick="adicionarCarrinho(${produto.id})">Comprar</button>
+                        </div>
+                    </div>
+                `;
+
+                grid.appendChild(card);
+            });
+        }
+
+        function filtrarProdutos(categoria) {
+            if (categoria === "todos") {
+                renderizarProdutos(produtos);
+                return;
+            }
+            const produtosFiltrados = produtos.filter(p => p.categoria === categoria);
+            renderizarProdutos(produtosFiltrados);
+        }
+
+        function verDetalhes(id) {
+            const produto = produtos.find(p => p.id === id);
+            const modal = document.getElementById("modal");
+            const conteudo = document.getElementById("modal-content");
+            const precoComDesconto = produto.preco * (1 - DESCONTO_PERCENTUAL);
+
+            conteudo.innerHTML = `
+                <div style="text-align:center">
+                    <div style="height:180px; display:flex; align-items:center; justify-content:center; margin-bottom:1rem;">
+                        <img src="${produto.imagem}" alt="${produto.nome}" style="max-height:100%; max-width:100%; object-fit:contain;">
+                    </div>
+                    <h2>${produto.nome}</h2>
+                    <p style="color:#666; margin:1rem 0; font-size:0.9rem;">${produto.descricao}</p>
+                    <div style="margin-bottom:1.5rem;">
+                        <span class="price-original">${formatarPreco(produto.preco)}</span>
+                        <span class="price-discount">${formatarPreco(precoComDesconto)}</span>
+                    </div>
+                    <button class="btn btn-primary" onclick="adicionarCarrinho(${produto.id}); fecharModal()">
+                        Adicionar ao Carrinho
+                    </button>
+                </div>
+            `;
+
+            modal.style.display = "flex";
+        }
+
+        function fecharModal() {
+            document.getElementById("modal").style.display = "none";
+        }
+
+        function adicionarCarrinho(id) {
+            const produto = produtos.find(p => p.id === id);
+            carrinho.push(produto);
+            atualizarCarrinho();
+            abrirCarrinho();
+        }
+
+        function aplicarCupomDireto(codigo) {
+            if (codigo === "PRIMEIRA15") {
+                cupomAtivo = true;
+                alert("Cupom PRIMEIRA15 ativado!");
+                atualizarCarrinho();
+                abrirCarrinho();
+            }
+        }
+
+        function aplicarCupomInput() {
+            const campo = document.getElementById("coupon-code");
+            const codigo = campo.value.trim().toUpperCase();
+
+            if (codigo === "PRIMEIRA15") {
+                cupomAtivo = true;
+                alert("Cupom aplicado com sucesso!");
+                atualizarCarrinho();
+            } else {
+                alert("Cupom inválido.");
+            }
+        }
+
+        function atualizarCarrinho() {
+            const contador = document.getElementById("cart-count");
+            if (contador) contador.innerText = carrinho.length;
+            mostrarCarrinho();
+        }
+
+        function mostrarCarrinho() {
+            const container = document.getElementById("cart-items");
+            if (!container) return;
+            
+            container.innerHTML = "";
+
+            if (carrinho.length === 0) {
+                container.innerHTML = "<p style='text-align:center; color:#888; padding:2rem 0;'>Seu carrinho está vazio.</p>";
+                document.getElementById("cart-subtotal").innerText = "R$ 0,00";
+                document.getElementById("cart-total").innerText = "R$ 0,00";
+                document.getElementById("discount-row").style.display = "none";
+                return;
+            }
+
+            let subtotal = 0;
+
+            carrinho.forEach((produto, index) => {
+                subtotal += produto.preco;
+
+                const item = document.createElement("div");
+                item.classList.add("cart-item");
+                item.innerHTML = `
+                    <div>
+                        <strong>${produto.nome}</strong><br>
+                        <small>${formatarPreco(produto.preco)}</small>
+                    </div>
+                    <button class="btn btn-outline" style="padding:4px 8px; font-size:0.7rem;" onclick="removerCarrinho(${index})">Remover</button>
+                `;
+                container.appendChild(item);
+            });
+
+            let desconto = cupomAtivo ? subtotal * DESCONTO_PERCENTUAL : 0;
+            let total = subtotal - desconto;
+
+            document.getElementById("cart-subtotal").innerText = formatarPreco(subtotal);
+            
+            if (cupomAtivo) {
+                document.getElementById("discount-row").style.display = "flex";
+                document.getElementById("cart-discount").innerText = `- ${formatarPreco(desconto)}`;
+            } else {
+                document.getElementById("discount-row").style.display = "none";
+            }
+
+            document.getElementById("cart-total").innerText = formatarPreco(total);
+        }
+
+        function removerCarrinho(index) {
+            carrinho.splice(index, 1);
+            atualizarCarrinho();
+        }
+
+        function abrirCarrinho() {
+            document.getElementById("cart-modal").style.display = "flex";
+            mostrarCarrinho();
+        }
+
+        function fecharCarrinho() {
+            document.getElementById("cart-modal").style.display = "none";
+        }
+
+        function finalizarCompra() {
+            if (carrinho.length === 0) {
+                alert("Seu carrinho está vazio.");
+                return;
+            }
+            alert("Obrigado pela compra!");
+            carrinho = [];
+            cupomAtivo = false;
+            atualizarCarrinho();
+            fecharCarrinho();
+        }
+
+        function enviarMensagem(event) {
+            event.preventDefault();
+            const nome = document.getElementById("nome").value;
+            alert("Obrigado, " + nome + "! Sua mensagem foi enviada.");
+            event.target.reset();
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            renderizarProdutos(produtos);
+
+            const botoes = document.querySelectorAll(".filter-btn");
+            botoes.forEach(botao => {
+                botao.addEventListener("click", () => {
+                    botoes.forEach(b => b.classList.remove("active"));
+                    botao.classList.add("active");
+                    const categoria = botao.dataset.category;
+                    filtrarProdutos(categoria);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
