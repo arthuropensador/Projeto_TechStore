@@ -150,9 +150,8 @@
         </div>
     </div>
 
-    <!-- SCRIPT COM A IMAGEM REAL DO PS3 SUPER SLIM INTEGRADA (BASE64) -->
     <script>
-        const produtos = [
+       const produtos = [
             {
                 id: 1,
                 nome: "Console Xbox Series X 1TB",
@@ -161,14 +160,7 @@
                 imagem: "https://images.unsplash.com/photo-1621259182978-fbf93132d53d?w=800&auto=format&fit=crop",
                 descricao: "O Xbox mais rápido e poderoso de todos os tempos, com SSD de 1TB e jogos em 4K nativo."
             },
-            {
-                id: 2,
-                nome: "Console Xbox Series S 512GB",
-                categoria: "consoles",
-                preco: 2699.00,
-                imagem: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=800&auto=format&fit=crop",
-                descricao: "Desempenho de próxima geração no menor Xbox de todos os tempos. Totalmente digital."
-            },
+      
             {
                 id: 3,
                 nome: "Console PlayStation 5 DualSense Kit",
@@ -177,13 +169,7 @@
                 imagem: "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=800&auto=format&fit=crop",
                 descricao: "Experiência de jogo imersiva com feedback háptico e gatilhos adaptáveis."
             },
-            {
-                id: 4,
-                nome: "PlayStation 3 Super Slim",
-                categoria: "consoles",
-                preco: 899.00,
-                imagem: "data:image/webp;base64,UklGRnoGAABXRUJQVlA4IG4GAACQIQCdASp4AHgAPm00l0kkIqInpBQp4IANiWlu22K4X+Uf+v3D56/uf7h9eD0P2k+qfzL/eX4N/N/73v4T3T/oHkG9S313/f/3D/P/8D+w///63fyD14/uX/p/xv6TfsD/y/6d9f/2i/9D2Af1v/yf2T8Af8n/r/Xy9QD/2/1/w2f9791/vh/9XuA//vud/53/wf8X9//qUf3r//e2V66fyH/k9h74//m31/94L2e+g/sn+w+InmH9j/wH+k833+O4b25vh3/y94LpYyG43/i3+0/y/k/4yXv/k584fzX+w8Av8P/m//O8Gz/F6/39X5A384/wn/S/x3wO/3P/p9w/5p9P79u/5PIn+k/6H31/yD+v//Hyaewp/f/8796f+9///fE////h9yf2i//v1/45P3v//8aT1f7H/B/6H/M/9v+e//////i9+aP7f+q/sX/1+439CfvL3u/X35Ff128/f7H5A/6p+g39o4v/U46L24j3eXf6n/d3iWf1I+x8mfe34o/p3572K/9R+d/uP7Tf2l92b9E4a7q39a/x32c/sX13v8d9/vaH+O33A/4f/S2y/5//ef9X11v83/A/////+S/83v294/s8e2P/bf7X/0///+5P3p/4v91/3v+x91///+5X4S/3j98/e3/3e9l/+vA5/c//l31//1yR34y//f/r9uX+w///3p/2i////6dOf2c/sX9eO1o/u3/a////02c33xP3//S////6S/7/eX9781//8X/iK7A93/m61s//m60f//4iuwPd/5utbP/5utH//+IrsD3f+brWz/+brR//8Bq3A2rMvG9U/+38k4s3/8G6S8S7A3y/2k1y81IeD/A39I4E470N49y7s/m60f//4iuwPd/5utbP/5utH//+IrsD3f+brWz/+a772+fIn1LIsm2v3qQ8S7A3y/2mF94S9lR5sS1s7+O6i344C2b40o2f9kQyWb/m61s//m60f//4iuwPd/5utbP/5utH//+IrsD0bM9W7M9E83m6G1xHq1NqP0+P0u0A3S/3o0l3Z8+bT/bS3pD+IrsD3f+brWz/+brR///iK7A93/m61s//S3pD97hIuMly+o20D12v5u5p1k21+zC39N9lI9aK/y/2m4q6lAawd21kG1s//m60f//4iuwPd/5utbP/5utE1o1yDqP132U/96/S2Y2R4D/uS4mDqO8YmK8J/m61p3yG/uCbrWz/+brR///iK7A93/m61s/8N9B371+lsx1sB3xJj335vD3eR86l4jQvIrtm2v5qfAnl3C2X4C+5EaD4E8utSgq43SbrWz/+brR///iK7A93/ls4k6A72sC8oXG2yK089Wp3+3E5d3s2p6Iq6G/5y/hN5R341m3LAtv20w73m4+O1+G1kC9Jd8Pll874o/hSg6IuMly+xL44G8A6Q/iK7A93/m61s//m61qP58zQes+x8mfe34o43OQ/B10i5B13aF49320e6A61e9A1110e53zNfLp6Mly+xL44G8A50qIu/5utbP/5utH//+Ir/U/B31x/iT/wX3964f+vC64/3I429B+sA8p78v4mO5sA/3C7vXo40813f/8yX/A3l3/19lI4/9utH//+IrsD3f+brWBx15v/f19s79U3o9dE9HveF/6q+p2Fk19sR4eH4e/d0+E2452R2u7A/2i+2f5D3eXf6Y5b//83Wj//_iK7A92079uA5O2Pveqf+R2s5e+lTfxmO2j3A/7tK/8G8s0X++7aA8+A9eWfX//R20f8h9U/6o/95u52f/4e6X0e6S4O58G5Y/3/zX2j+I/v3I5/8381P7Gf13jE133+xM/+brR//_iK7/S++S04z2Y2Uf/751xS2uS7Gg18P+32C3+2fX9468mff90p3/720/m61s//m60P1m8M//0j6D7v1m97I/2xJ63f/aQd3wP/2E327S3d5/eMfeMfeA/9213/m8/98x+I/v3I5/8381P5utG512x4A//4v0f81qS9N6L80s+T5YyFh16q1v/X/aH+MfeMfeMfeMfU/7f94O7sD3i/904iR34Mv3e4v85N320A//1v5oX0c4T4U+R7pIn+Ir/S1XU4f/7//m33aD8o4iR3/6q2n1LIsS4OIn1m2u4E0f5R341m2sI/iK7A93/m9d1n2O/e41q2v3q/0j93/1P5m+eP4v2uMfls4jXf4e3c5D84+Ifls3x4N3sT/m4GfJchX/m3/2I/v/8SIn1y6o5z0f+0O2eP/dAnl3a0S1e4Rj2P2C2qf1f7W3qS8e4H5f7/3/+/v3m71Yf1j8O/sXf/44vXf4a4Ie4S4G80yI4Ie3e3k0L645f+/8s23aP/33eR/+/s224H18v9pA33l420e6f212R4C3qQ8X/nL/eL/0m09s/sA9P3/pX38Y/m61s//m61/9+s1P3A9oA945/S4J+S94X5bOMly+v4/2E9H/mX/0m4x/f32/v/eL/vX31n08S/i7/3m6S4A5/oUf/iK/8iR3+xY9y4+m7B+8S9s/4iuwPd/5utbP9gS9v3eS32+w94S/9eFv0T4C7sI9/3a8s1A/iK/3hL3l3//l/v/t/qG3/3m453E+uXf8v/f5D21//uA+/x/+/2J5q/v6i3+wW/14S/3j+2f///f4iIn+brR//_iK133XpS2wT/+Iru1u0i4yI/+R8/iX7eA7398o74e2xP/aInm0g6aMfeMfx4v/T90x9u3989396S7i/x60O++//990/x/8i4S32/4/3f5f/v4y221+4L93e4Iefp35utH//4e5tM+3aA//5v5q/Xb/+s/7y2k0f2xH3wI//9aA/2I89C/4e2y0e4N2x4I43f/4/3C4O8d8Ym5o/z/cQd74M042d+7b/i20e6fX+73+8c92f1m60f9//m61m6sS3f9tIepD2X/3gq9A//+8tqP7yv8E8X/8iR/61Y/3I4e0y40f64xP2xG2/3bU4a20/p33m22f/4L259m8Rj3bLd1b70q420e6A//m60S+4/c3e/9343m61s/y20Xf3A9n+Ir/5q2n30v/T/cI9y14s3/8m6A///4iuwPd/5utAAN/eoqfM5o8/s7z+Sff9yZ9qI9kI4Q+5W50sC1236E0883W/L4e1EexQdByw0Y3iA2A+/vW0lF8H4a09a5S2SrmR1S1xstP1e4qK02a8M5Q4k70w5xS4Z7k0l/u2h/Y8i8M++3O3fS0o+dJ/C1U1GInE5x/R1a+l5t1O59b2s75hS4/bE23SInh612zByk7f4tN2H23j42x517g7iFas2C8D+vO69s/v7kY4X7vAnPq03+61S9e+R7+96zUj4sM8m+92+sR0a/i74fGf8p79m8/0fXm//cWw/+482/s4qP/f/qK75d+24A+/9o6+2f+7A+IrsD3f+R86/eX33X1P6q/SffxIs+S3jL1/3q/9H2iR36zVv4x1r+51/v//f/320f3/2/vL5d/39f9d4536/sO9f6/m/8/pL/N5o/p882/02+x+wPf+R3098s2u7uA8973/vI+/a384f88/7S3q1A/t33eR/kSIn+Q96G8m/3e95/78pL5tP4qO8O5G6Ifl/mI9qXy48W34iR3y5C/eP95v94C/sX403v5v9v4M33I2vL8pT9s9A2+I4f1Hfv29a/m3/2I+76x91z8s/3+81I8X4cT6/A/m6e/iW2//20f/2X/SfvDqf4I+4/3/6wX98f/+y//+v43m2eA230S/XG19O0a3X7u9aP82f3E6z3e/3X9v/+3Xb//+Ie3e3bS3/uD++2h20a1s//m61s//m61s//m60S3AAA="
-            },
+         ,
             {
                 id: 5,
                 nome: "Console PS4 Dourado Slim",
@@ -229,11 +215,34 @@
                 nome: "Notebook Gamer Lenovo Legion 5",
                 categoria: "notebooks",
                 preco: 5999.00,
-                imagem: "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=800&auto=format&fit=crop",
+                imagem: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=800&auto=format&fit=crop",
                 descricao: "Notebook gamer de alto desempenho com placa de vídeo RTX dedicada."
+            },
+            {
+                id: 11,
+                nome: "Notebook Brazil PC i7 16GB SSD 480GB",
+                categoria: "notebooks",
+                preco: 2899.00,
+                imagem: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800&auto=format&fit=crop",
+                descricao: "Intel Core i7 com 16GB RAM e SSD 480GB em chassi prateado elegante. Ideal para multitarefas e estudos."
+            },
+            {
+                id: 12,
+                nome: "Notebook Brazil PC i7 16GB SSD 480GB MX130",
+                categoria: "notebooks",
+                preco: 3299.00,
+                imagem: "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=800&auto=format&fit=crop",
+                descricao: "Processador Intel Core i7, 16GB RAM, SSD 480GB e placa gráfica dedicada GeForce MX130 para edição leve e jogos."
+            },
+            {
+                id: 13,
+                nome: "Notebook Brazil PC i7 Pro 15.6 Prata",
+                categoria: "notebooks",
+                preco: 3499.00,
+                imagem: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=800&auto=format&fit=crop",
+                descricao: "Tela Full HD de 15.6 polegadas, construção leve em alumínio prateado, alta velocidade com SSD e 16GB RAM."
             }
-            
-        ];
+        ];;
 
         let carrinho = [];
         let cupomAtivo = false;
@@ -343,7 +352,7 @@
 
             if (codigo === "PRIMEIRA15") {
                 cupomAtivo = true;
-                alert("Cupom aplicado com sucesso!");
+                alert("Cupom applied com sucesso!");
                 atualizarCarrinho();
             } else {
                 alert("Cupom inválido.");
